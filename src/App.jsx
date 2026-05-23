@@ -1,14 +1,27 @@
-import Message from './components/Message'
-import Profile from './components/Profile'
+import { useState } from 'react'
 
 function App() {
+  const [count, setCount] = useState(0)
+
   return (
     <div>
-      <h1>Hello Kashish this side</h1>
+      <h1>Counter App</h1>
 
-      <Message />
-      <Profile name="Raj" branch="CSE" />
-      <Profile name="Ananya" branch="AI" />
+      <h2>{count}</h2>
+
+      <button
+      style={{ marginRight: '10px' }} 
+      onClick={() => setCount(count + 1)}>
+        Increase Count 
+      </button>
+
+      <br /><br />
+
+      <button
+      style={{ marginRight: '10px' }} 
+      onClick={() => setCount(count - 1)}>
+        Decrease Count
+      </button>
     </div>
   )
 }

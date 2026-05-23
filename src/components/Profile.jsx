@@ -1,9 +1,17 @@
-function Profile() {
+function Profile({ name, branch }) {
   return (
-    <div>
-      <p>This is profile component </p>
-      <p>Name : Kashish</p>
-      <p>Branch : CE</p>
+    <div
+        style={{
+            border: '2px solid white',
+            padding: '10px',
+            marginBottom: '20px',
+            borderRadius: '10px',
+        }}
+    >
+      <h2>Profile Component</h2>
+
+      <p>Name: {name}</p>
+      <p>Branch: {branch}</p>
     </div>
   )
 }

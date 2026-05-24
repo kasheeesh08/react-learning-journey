@@ -33,11 +33,25 @@ function App() {
       
       <br />
       <button onClick={() => setCount(count + 1)}>
-        Click Count
+        {count >= 5 ? 'High Count' : 'Increase Count'}
+      </button>
+
+    <br />
+
+      <button
+      disabled={count === 0}
+      onClick={() => setCount(count - 1)}>
+        Decrease Count
       </button>
 
       <br />
-      <p>Button clicked {count} times</p>
+
+      <p style={{
+          color: count > 5 ? 'red' : 'lightgreen'
+        }}>
+        Button clicked {count} times
+      </p>
+
       <br />
 
       {name && <h2>Welcome {name}</h2>}

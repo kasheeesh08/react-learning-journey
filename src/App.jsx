@@ -4,9 +4,13 @@ import CustomButton from './components/CustomButton'
 
 function App() {
   const [name, setName] = useState('')
-  const students = ['Kashish', 'Rahul', 'Ananya', 'Raj']
+  const students = [
+    { id: 1, name: 'Kashish', course: 'React' },
+    { id: 2, name: 'Rahul', course: 'Node.js' },
+    { id: 3, name: 'Ananya', course: 'AI' },
+  ]
   const filteredStudents = students.filter((student) =>
-  student.toLowerCase().includes(name.toLowerCase())
+  student.name.toLowerCase().includes(name.toLowerCase())
   )
   function clearInput() {
     setName('')

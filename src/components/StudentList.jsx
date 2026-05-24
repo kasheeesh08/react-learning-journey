@@ -2,7 +2,9 @@ function StudentList({ students = [] }) {
   return (
     <ul>
       {students.map((student, index) => (
-        <li key={index}>{student}</li>
+        <li key={student.id}>
+            {student.name} - {student.course}
+        </li>
       ))}
     </ul>
   )

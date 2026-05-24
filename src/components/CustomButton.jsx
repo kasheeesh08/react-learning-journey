@@ -1,6 +1,7 @@
-function CustomButton({ children, onClick }) {
+function CustomButton({ children, onClick, disabled }) {
   return (
     <button
+      disabled={disabled}
       style={{ marginRight: '10px' }}
       onClick={onClick}
     >

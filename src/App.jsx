@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import StudentList from './components/StudentList'
 import CustomButton from './components/CustomButton'
+import CustomInput from './components/CustomInput'
 
 function App() {
   const [loading, setLoading] = useState(true)
@@ -13,10 +14,13 @@ function App() {
   const filteredStudents = students.filter((student) =>
   student.name.toLowerCase().includes(name.toLowerCase())
   )
+  const [count, setCount] = useState(0)
+  const [selectedStudent, setSelectedStudent] = useState('')
+
   function clearInput() {
     setName('')
   }
-  const [count, setCount] = useState(0)
+  
 
   useEffect(() => {
     console.log('Button count updated')
@@ -30,41 +34,46 @@ function App() {
     return () => clearTimeout(timer)
   }, [])
 
-  function handleSubmit() {
+  function handleSubmit(e) {
+    e.preventDefault()
     if (name === '') {
       alert('Please enter a name')
       return
   }
 
     alert(`Submitted Name: ${name}`)
+    setName('')
   }
 
   if (loading) {
         return <h1>Loading...</h1>
   }
 
+  const isInputEmpty = name.trim() === ''
+  
   return (
     <div>
       <h1>React Input Example</h1>
+      <form onSubmit={handleSubmit}>
 
-      <input
-        type="text"
-        placeholder="Enter your name"
+      <CustomInput
         value={name}
         onChange={(e) => setName(e.target.value)}
+        placeholder="Enter your name"
       />
 
       <br />
       
-      <CustomButton onClick={handleSubmit}>
+      <CustomButton 
+      onClick={handleSubmit}
+      disabled={isInputEmpty}>
         Submit
       </CustomButton>
+      </form>
 
-      <br />
-
-      <button onClick={clearInput}>
+      <CustomButton onClick={clearInput}>
         Clear Input
-      </button>
+      </CustomButton>
       
       <br />
       <button onClick={() => setCount(count + 1)}>
@@ -91,11 +100,20 @@ function App() {
 
       {name && <h2>Welcome {name}</h2>}
       {name === '' && <p>Showing all students</p>}
+
       <p>
         Found {filteredStudents.length} students
       </p>
 
-      <StudentList students={filteredStudents} />
+      {selectedStudent && (
+        <h3>Selected Student: {selectedStudent}</h3>
+      )}
+
+      <StudentList
+        students={filteredStudents}
+        setSelectedStudent={setSelectedStudent}
+        selectedStudent={selectedStudent}
+      />
 
     </div>
   )

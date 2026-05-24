@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 
 function App() {
   const [name, setName] = useState('')
-
+  const students = ['Kashish', 'Rahul', 'Ananya', 'Raj']
   return (
     <div>
       <h1>React Input Example</h1>
@@ -14,7 +14,12 @@ function App() {
         onChange={(e) => setName(e.target.value)}
       />
 
-      <h2>Hello {name}</h2>
+      <ul>
+        {students.map((student, index) => (
+          <li key={index}>{student}</li>
+        ))}
+      </ul>
+
     </div>
   )
 }

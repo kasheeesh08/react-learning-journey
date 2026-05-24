@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import StudentList from './components/StudentList'
 
 function App() {
   const [name, setName] = useState('')
@@ -70,15 +71,7 @@ function App() {
 
       {name && <h2>Welcome {name}</h2>}
 
-      {filteredStudents.length > 0 ? (
-        <ul>
-          {filteredStudents.map((student, index) => (
-            <li key={index}>{student}</li>
-          ))}
-        </ul>
-      ) : (
-        <p>No students found</p>
-      )}
+      <StudentList students={filteredStudents} />
 
     </div>
   )

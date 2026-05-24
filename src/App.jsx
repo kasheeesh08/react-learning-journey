@@ -3,6 +3,10 @@ import { useState, useEffect } from 'react'
 function App() {
   const [name, setName] = useState('')
   const students = ['Kashish', 'Rahul', 'Ananya', 'Raj']
+  const filteredStudents = students.filter((student) =>
+  student.toLowerCase().includes(name.toLowerCase())
+  )
+
   return (
     <div>
       <h1>React Input Example</h1>
@@ -16,11 +20,15 @@ function App() {
 
       {name && <h2>Welcome {name}</h2>}
 
-      <ul>
-        {students.map((student, index) => (
-          <li key={index}>{student}</li>
-        ))}
-      </ul>
+      {filteredStudents.length > 0 ? (
+        <ul>
+          {filteredStudents.map((student, index) => (
+            <li key={index}>{student}</li>
+          ))}
+        </ul>
+      ) : (
+        <p>No students found</p>
+      )}
 
     </div>
   )

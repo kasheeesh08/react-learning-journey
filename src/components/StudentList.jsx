@@ -1,10 +1,13 @@
+import StudentCard from './StudentCard'
 function StudentList({ students = [] }) {
   return (
     <ul>
       {students.map((student, index) => (
-        <li key={student.id}>
-            {student.name} - {student.course}
-        </li>
+        <StudentCard
+            key={student.id}
+            name={student.name}
+            course={student.course}
+        />
       ))}
     </ul>
   )

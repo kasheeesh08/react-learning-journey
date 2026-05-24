@@ -3,6 +3,7 @@ import StudentList from './components/StudentList'
 import CustomButton from './components/CustomButton'
 
 function App() {
+  const [loading, setLoading] = useState(true)
   const [name, setName] = useState('')
   const students = [
     { id: 1, name: 'Kashish', course: 'React' },
@@ -16,9 +17,19 @@ function App() {
     setName('')
   }
   const [count, setCount] = useState(0)
+
   useEffect(() => {
     console.log('Button count updated')
   }, [count])
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false)
+  }, 2000)
+
+    return () => clearTimeout(timer)
+  }, [])
+
   function handleSubmit() {
     if (name === '') {
       alert('Please enter a name')
@@ -26,6 +37,10 @@ function App() {
   }
 
     alert(`Submitted Name: ${name}`)
+  }
+
+  if (loading) {
+        return <h1>Loading...</h1>
   }
 
   return (
@@ -75,6 +90,10 @@ function App() {
       <br />
 
       {name && <h2>Welcome {name}</h2>}
+      {name === '' && <p>Showing all students</p>}
+      <p>
+        Found {filteredStudents.length} students
+      </p>
 
       <StudentList students={filteredStudents} />
 

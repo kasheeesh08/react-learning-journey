@@ -13,6 +13,14 @@ function App() {
   useEffect(() => {
     console.log('Button count updated')
   }, [count])
+  function handleSubmit() {
+    if (name === '') {
+      alert('Please enter a name')
+      return
+  }
+
+    alert(`Submitted Name: ${name}`)
+  }
 
   return (
     <div>
@@ -25,7 +33,13 @@ function App() {
         onChange={(e) => setName(e.target.value)}
       />
 
-      <br /><br />
+      <br />
+      
+      <button onClick={handleSubmit}>
+        Submit
+      </button>
+
+      <br />
 
       <button onClick={clearInput}>
         Clear Input

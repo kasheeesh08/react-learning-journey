@@ -8,6 +8,8 @@ function App() {
       <h1>Counter App</h1>
 
       <h2>{count}</h2>
+      <p>Current count is :{count}</p>
+      <br /><br />
 
       <button
       style={{ marginRight: '10px' }} 
@@ -22,6 +24,12 @@ function App() {
       onClick={() => setCount(count - 1)}>
         Decrease Count
       </button>
+
+      <br /><br />
+      <button onClick={() => setCount(0)}>
+        Reset Count
+      </button>
+
     </div>
   )
 }

@@ -5,6 +5,7 @@ import CustomInput from './components/CustomInput'
 
 function App() {
   const [users, setUsers] = useState([])
+  const [usersLoading, setUsersLoading] = useState(true)
   const [loading, setLoading] = useState(true)
   const [name, setName] = useState('')
   const students = [
@@ -36,10 +37,11 @@ function App() {
   }, [])
 
   useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/users')
-      .then((response) => response.json())
-      .then((data) => {
-        setUsers(data)
+  fetch('https://jsonplaceholder.typicode.com/users')
+    .then((response) => response.json())
+    .then((data) => {
+      setUsers(data)
+      setUsersLoading(false)
     })
   }, [])
 
@@ -126,13 +128,17 @@ function App() {
 
       <h2>Users From API</h2>
 
-      <ul>
-        {users.map((user) => (
-          <li key={user.id}>
-            {user.name}
-          </li>
-        ))}
-      </ul>
+      {usersLoading ? (
+        <p>Loading users...</p>
+      ) : (
+        <ul>
+          {users.map((user) => (
+            <li key={user.id}>
+              {user.name}
+            </li>
+          ))}
+        </ul>
+      )}
 
     </div>
   )

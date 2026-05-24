@@ -4,6 +4,7 @@ import CustomButton from './components/CustomButton'
 import CustomInput from './components/CustomInput'
 
 function App() {
+  const [users, setUsers] = useState([])
   const [loading, setLoading] = useState(true)
   const [name, setName] = useState('')
   const students = [
@@ -32,6 +33,14 @@ function App() {
   }, 2000)
 
     return () => clearTimeout(timer)
+  }, [])
+
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then((response) => response.json())
+      .then((data) => {
+        setUsers(data)
+    })
   }, [])
 
   function handleSubmit(e) {
@@ -114,6 +123,16 @@ function App() {
         setSelectedStudent={setSelectedStudent}
         selectedStudent={selectedStudent}
       />
+
+      <h2>Users From API</h2>
+
+      <ul>
+        {users.map((user) => (
+          <li key={user.id}>
+            {user.name}
+          </li>
+        ))}
+      </ul>
 
     </div>
   )

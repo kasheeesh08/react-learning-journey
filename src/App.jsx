@@ -14,6 +14,8 @@ function App() {
         onChange={(e) => setName(e.target.value)}
       />
 
+      {name && <h2>Welcome {name}</h2>}
+
       <ul>
         {students.map((student, index) => (
           <li key={index}>{student}</li>

@@ -6,6 +6,13 @@ function App() {
   const filteredStudents = students.filter((student) =>
   student.toLowerCase().includes(name.toLowerCase())
   )
+  function clearInput() {
+    setName('')
+  }
+  const [count, setCount] = useState(0)
+  useEffect(() => {
+    console.log('Button count updated')
+  }, [count])
 
   return (
     <div>
@@ -17,6 +24,21 @@ function App() {
         value={name}
         onChange={(e) => setName(e.target.value)}
       />
+
+      <br /><br />
+
+      <button onClick={clearInput}>
+        Clear Input
+      </button>
+      
+      <br />
+      <button onClick={() => setCount(count + 1)}>
+        Click Count
+      </button>
+
+      <br />
+      <p>Button clicked {count} times</p>
+      <br />
 
       {name && <h2>Welcome {name}</h2>}
 

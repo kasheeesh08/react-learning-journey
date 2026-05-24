@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import StudentList from './components/StudentList'
+import CustomButton from './components/CustomButton'
 
 function App() {
   const [name, setName] = useState('')
@@ -36,9 +37,9 @@ function App() {
 
       <br />
       
-      <button onClick={handleSubmit}>
+      <CustomButton onClick={handleSubmit}>
         Submit
-      </button>
+      </CustomButton>
 
       <br />
 
